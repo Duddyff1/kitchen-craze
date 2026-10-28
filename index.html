@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kitchen Craze</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon">🍳</span><div><b>KITCHEN CRAZE</b><small>mix it • cook it • serve it</small></div></div>
+    <div class="top-actions">
+      <button id="soundToggle" class="icon-button" aria-label="Toggle sound">🔊 Sound On</button>
+      <button id="resetBtn" class="icon-button">↻ Restart</button>
+    </div>
+  </header>
+
+  <main class="game">
+    <section class="scene-wrap">
+      <div class="scene-label"><span>YOUR KITCHEN</span><span id="statusText">Pick something from the fridge!</span></div>
+      <div class="scene" id="scene">
+        <div class="window"><div class="sky"></div><div class="cloud cloud1"></div><div class="cloud cloud2"></div><div class="hill"></div><div class="window-sill"></div></div>
+        <div class="shelf shelf-one"><span>🌿</span><span>🫙</span><span>🪴</span></div>
+        <div class="wall-clock">12:00</div>
+        <div class="counter-back"></div>
+        <div class="fridge-art"><div class="fridge-top">FRESH!</div><div class="fridge-handle"></div><div class="fridge-note">TODAY'S<br>MENU ✦</div></div>
+        <div class="character-area">
+          <div class="speech-bubble" id="speech">Let's cook something!</div>
+          <div class="character character-milo" id="character">
+            <div class="hair"></div><div class="ear ear-left"></div><div class="ear ear-right"></div>
+            <div class="head">
+              <div class="eyebrow brow-left"></div><div class="eyebrow brow-right"></div>
+              <div class="eye eye-left"><i></i></div><div class="eye eye-right"><i></i></div>
+              <div class="cheek cheek-left"></div><div class="cheek cheek-right"></div>
+              <div class="nose"></div><div class="mouth" id="mouth"></div>
+            </div>
+            <div class="neck"></div><div class="body"><div class="shirt-pocket"></div></div>
+            <div class="arm arm-left"></div><div class="arm arm-right"></div>
+          </div>
+          <div class="character-name" id="characterName">MILO</div>
+        </div>
+        <div class="counter-front"></div>
+        <div class="cutting-board" id="board"><span class="board-grain"></span><span class="board-label">CHOP ZONE</span><div id="boardFood" class="board-food"></div></div>
+        <div class="stove" id="stove"><div class="burner burner-left"><span></span></div><div class="burner burner-right"><span></span></div><div class="oven-door"><div class="oven-window"></div><div class="oven-handle"></div></div></div>
+        <div class="pan" id="pan"><div class="pan-handle"></div><div class="pan-bowl"><div id="panFood"></div></div></div>
+        <div class="blender" id="blender"><div class="blender-lid"></div><div class="blender-jar"><div id="blenderFood"></div></div><div class="blender-base"><span>BLEND</span></div></div>
+        <div class="sink"><div class="tap"></div><div class="sink-bowl"></div></div>
+        <div class="plate" id="plate"><div class="plate-inner"><div id="plateFood"></div></div><span>SERVE</span></div>
+        <div class="steam steam-a"></div><div class="steam steam-b"></div>
+        <div class="sparkle sparkle-a">✦</div><div class="sparkle sparkle-b">✧</div>
+        <div class="drop-hint" id="dropHint">Drop food here</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn" data-action="chop">🔪 Chop</button>
+        <button class="action-btn" data-action="cook">🔥 Cook</button>
+        <button class="action-btn" data-action="blend">🌀 Blend</button>
+        <button class="action-btn" data-action="season">🧂 Season</button>
+        <button class="action-btn serve-btn" data-action="serve">🍽️ Feed Milo!</button>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <div class="panel-tabs"><button class="tab active" data-tab="fridge">🧊 Fridge</button><button class="tab" data-tab="tools">🧰 Tools</button><button class="tab" data-tab="people">🙂 Friends</button></div>
+      <div id="fridgePanel" class="panel-content">
+        <div class="panel-heading"><h2>Food drawer</h2><p>Tap or drag food into your kitchen.</p></div>
+        <div class="food-grid" id="foodGrid"></div>
+        <div class="selected-card" id="selectedCard"><span class="selected-emoji">🍎</span><div><b>Nothing selected</b><small>Choose an ingredient to begin.</small></div></div>
+      </div>
+      <div id="toolsPanel" class="panel-content hidden">
+        <div class="panel-heading"><h2>Kitchen tools</h2><p>Choose a tool, then tap the ingredient.</p></div>
+        <div class="tool-list">
+          <button class="tool-card" data-tool="board"><span>🔪</span><div><b>Cutting board</b><small>Slice food into pieces</small></div></button>
+          <button class="tool-card" data-tool="pan"><span>🍳</span><div><b>Frying pan</b><small>Cook until golden</small></div></button>
+          <button class="tool-card" data-tool="blender"><span>🌀</span><div><b>Blender</b><small>Make a smoothie</small></div></button>
+          <button class="tool-card" data-tool="season"><span>🧂</span><div><b>Seasoning</b><small>Add a surprise flavor</small></div></button>
+          <button class="tool-card" data-tool="plate"><span>🍽️</span><div><b>Serving plate</b><small>Get ready to feed a friend</small></div></button>
+        </div>
+        <div class="tip-box">💡 Tip: Try cooking a carrot, blending a banana, or serving a spicy apple. Every friend reacts differently!</div>
+      </div>
+      <div id="peoplePanel" class="panel-content hidden">
+        <div class="panel-heading"><h2>Choose a friend</h2><p>Each friend has their own personality.</p></div>
+        <div class="friend-list">
+          <button class="friend-card active" data-friend="milo"><span class="friend-avatar milo-avatar">🙂</span><div><b>Milo</b><small>Loves crunchy snacks</small></div><span>✓</span></button>
+          <button class="friend-card" data-friend="luna"><span class="friend-avatar luna-avatar">😋</span><div><b>Luna</b><small>Loves sweet fruit</small></div><span></span></button>
+          <button class="friend-card" data-friend="bo"><span class="friend-avatar bo-avatar">🤩</span><div><b>Bo</b><small>Brave taste tester</small></div><span></span></button>
+        </div>
+      </div>
+      <div class="inventory-footer"><div><span>🍽️</span><div><b id="dishCount">0 dishes served</b><small>Make something delicious!</small></div></div><button id="clearBtn" class="clear-btn">Clear counter</button></div>
+    </aside>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <footer>Kitchen Craze is an original fan-inspired cooking game prototype. No downloads or accounts needed after extracting the ZIP.</footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
